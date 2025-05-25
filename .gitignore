@@ -1,0 +1,19 @@
+# plik z kluczem API
+.env
+
+# środowisko virtualne
+venv/
+.venv/
+
+# cache Pythona
+__pycache__/
+*.py[cod]
+
+# pliki IDE / systemowe
+.DS_Store
+.idea/
+.vscode/
+
+# logi i pliki tymczasowe
+*.log
+*.tmp
