@@ -1,4 +1,6 @@
 beautifulsoup4
 requests
-openai
+openai==0.28.1
 python-dotenv
+streamlit
+fpdf

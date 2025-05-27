@@ -1,0 +1,31 @@
+---
+
+**Data Engineer w firmie XYZ**
+
+**Opis firmy:**
+Firma XYZ jest wiodącym dostawcą innowacyjnych rozwiązań technologicznych dla branży e-commerce. Nasza firma rozwija się dynamicznie, oferując zaawansowane narzędzia i platformy, które umożliwiają naszym klientom osiągnięcie sukcesu w świecie cyfrowym.
+
+**Obowiązki:**
+- Projektowanie, rozwijanie i utrzymywanie procesów ETL
+- Optymalizacja przepływu danych oraz zarządzanie bazami danych
+- Współpraca z zespołem Data Science w celu zapewnienia dostępu do poprawnych i aktualnych danych
+- Wdrażanie rozwiązań z zakresu przetwarzania i analizy danych
+
+**Wymagania:**
+- Doświadczenie w pracy jako Data Engineer lub podobnej roli
+- Znajomość technologii ETL (Extract, Transform, Load)
+- Umiejętność pracy z bazami danych (np. SQL, NoSQL)
+- Znajomość narzędzi do przetwarzania danych (np. Apache Spark, Hadoop)
+- Wykształcenie wyższe w obszarze informatyki lub pokrewnym
+
+**Benefity:**
+- Atrakcyjne wynagrodzenie adekwatne do posiadanych umiejętności
+- Elastyczne godziny pracy oraz możliwość pracy zdalnej
+- Pakiet benefitów pozapłacowych (opieka zdrowotna, karta sportowa)
+- Możliwość rozwoju zawodowego i udziału w innowacyjnych projektach
+
+Dołącz do zespołu XYZ i rozwijaj się w dynamicznym środowisku technologicznym! Aplikuj już teraz, aby być częścią naszej ekscytującej drogi w kierunku cyfrowej transformacji.
+
+---
+
+Czy taki rodzaj ogłoszenia spełnia Twoje oczekiwania? Czy mogę pomóc Ci w inny sposób?

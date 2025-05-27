@@ -20,8 +20,3 @@ def get_offer_links():
                 offer_links.append(full_url)
 
     return offer_links
-
-# Test
-links = get_offer_links()
-for link in links:
-    print(link)
