@@ -13,6 +13,8 @@ from scrapper import get_offer_links
 from search import extract_tech_stack
 from generator import generate_job_offer
 from pdf_export import save_offer_to_pdf
+from categories import CATEGORIES
+
 from concurrent.futures import ThreadPoolExecutor
 
 st.set_page_config(page_title="AI Job Offer Generator", layout="centered")
@@ -22,6 +24,10 @@ st.markdown("Wybierz źródło danych, wygeneruj ogłoszenie z pomocą OpenAI �
 # --- WYBÓR ŹRÓDŁA DANYCH ---
 st.subheader("📥 Wybierz źródło danych")
 data_source = st.radio("Źródło danych:", ["Scrappuj z JustJoin", "Wgraj własny plik CSV"])
+selected_category = st.selectbox(
+    "🎯 Wybierz kategorię (opcjonalnie):",
+    options=["Wszystkie"] + list(CATEGORIES.keys())
+)
 
 # Inicjalizacja sesji
 if "df" not in st.session_state:
@@ -33,7 +39,12 @@ if data_source == "Scrappuj z JustJoin":
 
     if st.button("🔍 Start scrapping"):
         st.info(f"⏳ Scrapping dla słowa: {keyword}")
-        offer_urls = get_offer_links(keyword)
+        # Przypuśćmy, że selected_category pochodzi ze `st.selectbox(...)`
+        category_slugs = [] if selected_category == "Wszystkie" else [CATEGORIES[selected_category]]
+
+        offer_urls = get_offer_links(keyword=keyword, categories=category_slugs)
+
+
         st.success(f"✅ Znaleziono {len(offer_urls)} ofert!")
 
         def scrape_single(url):
