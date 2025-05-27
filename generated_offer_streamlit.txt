@@ -1,31 +1,33 @@
 ---
 
-**Data Engineer w firmie XYZ**
+**Data Engineer wanted!**
 
-**Opis firmy:**
-Firma XYZ jest wiodącym dostawcą innowacyjnych rozwiązań technologicznych dla branży e-commerce. Nasza firma rozwija się dynamicznie, oferując zaawansowane narzędzia i platformy, które umożliwiają naszym klientom osiągnięcie sukcesu w świecie cyfrowym.
+**Company Description:**
+Join our innovative and dynamic team at XYZ Company, a leading tech firm specializing in cutting-edge data solutions. We pride ourselves on fostering a collaborative and growth-oriented work environment where your skills and creativity can shine.
 
-**Obowiązki:**
-- Projektowanie, rozwijanie i utrzymywanie procesów ETL
-- Optymalizacja przepływu danych oraz zarządzanie bazami danych
-- Współpraca z zespołem Data Science w celu zapewnienia dostępu do poprawnych i aktualnych danych
-- Wdrażanie rozwiązań z zakresu przetwarzania i analizy danych
+**Responsibilities:**
+- Develop and maintain data pipelines using Python and SQL
+- Utilize Databricks and Airflow for data processing and workflow automation
+- Collaborate with cross-functional teams to design and optimize data architecture
+- Implement best practices for data storage, retrieval, and analysis
+- Troubleshoot and resolve data-related issues to ensure data quality and integrity
 
-**Wymagania:**
-- Doświadczenie w pracy jako Data Engineer lub podobnej roli
-- Znajomość technologii ETL (Extract, Transform, Load)
-- Umiejętność pracy z bazami danych (np. SQL, NoSQL)
-- Znajomość narzędzi do przetwarzania danych (np. Apache Spark, Hadoop)
-- Wykształcenie wyższe w obszarze informatyki lub pokrewnym
+**Requirements:**
+- Proficiency in Python and SQL
+- Experience with Databricks and Airflow
+- Strong communication skills in English
+- Bachelor's degree in Computer Science or related field
+- Proven track record in designing and implementing data solutions
 
-**Benefity:**
-- Atrakcyjne wynagrodzenie adekwatne do posiadanych umiejętności
-- Elastyczne godziny pracy oraz możliwość pracy zdalnej
-- Pakiet benefitów pozapłacowych (opieka zdrowotna, karta sportowa)
-- Możliwość rozwoju zawodowego i udziału w innowacyjnych projektach
+**Benefits:**
+- Competitive salary and performance-based bonuses
+- Health insurance and retirement savings plan
+- Flexible work hours and remote work options
+- Professional development opportunities and training programs
+- Vibrant company culture with team building activities
 
-Dołącz do zespołu XYZ i rozwijaj się w dynamicznym środowisku technologicznym! Aplikuj już teraz, aby być częścią naszej ekscytującej drogi w kierunku cyfrowej transformacji.
+If you are passionate about data engineering and eager to make an impact in a fast-paced tech environment, we want to hear from you! Join us at XYZ Company and be part of a team that is revolutionizing the future of data technology. Apply now and take your career to the next level!
 
----
+--- 
 
-Czy taki rodzaj ogłoszenia spełnia Twoje oczekiwania? Czy mogę pomóc Ci w inny sposób?
+Mam nadzieję, że ogłoszenie spełnia Twoje oczekiwania. Jeśli potrzebujesz dalszej pomocy, daj mi znać!

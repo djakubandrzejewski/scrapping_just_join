@@ -1,0 +1,35 @@
+---
+
+**Data Engineer Wanted**
+
+Are you passionate about working with data and cutting-edge technologies? Join our dynamic team as a Data Engineer and take your career to the next level!
+
+**Company Description:**
+We are a leading tech company specializing in innovative solutions for data-driven decision-making. Our team is dedicated to pushing the boundaries of technology and creating impactful solutions for our clients. Join us in our mission to revolutionize the way data is used in the modern world.
+
+**Responsibilities:**
+- Designing, developing, and maintaining data pipelines using MsSQL
+- Implementing and maintaining RESTful APIs for seamless data integration
+- Collaborating with cross-functional teams to ensure smooth data integration processes
+- Utilizing Ansible for automation and streamlining of data processes
+- Fluency in both Polish and English for effective communication within the team
+
+**Requirements:**
+- Proven experience with MsSQL and data integration techniques
+- Proficiency in RESTful API development and implementation
+- Strong communication skills in Polish and English
+- Familiarity with Ansible for automation tasks
+- Bachelor's degree in Computer Science or related field preferred
+
+**Benefits:**
+- Competitive salary commensurate with experience
+- Flexible working hours and the option for remote work
+- Ongoing training and professional development opportunities
+- Dynamic and collaborative work environment
+- Health and wellness benefits
+
+If you are a data enthusiast looking to make a real impact in a forward-thinking company, we want to hear from you! Join us in shaping the future of data engineering and send us your application today.
+
+---
+
+Mam nadzieję, że ogłoszenie spełnia Twoje oczekiwania! Jeśli potrzebujesz dodatkowej pomocy, daj mi znać.

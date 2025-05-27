@@ -1,8 +1,9 @@
 from scrapper_offers import get_offer_links
 from search_stack import extract_tech_stack
-from export_results import export_full_tech_data
+from export_results import export_full_tech_data, export_aggregated_tech_data
 from generate_job_offer import generate_job_offer
 from collections import Counter
+
 import time
 
 def main():
@@ -27,7 +28,9 @@ def main():
     for tech, count in tech_counter.most_common(30):
         print(f"{tech}: {count}")
 
-    export_full_tech_data(all_tech_data)
+    export_full_tech_data(all_tech_data, filename="tech_stack_full.csv")
+    export_aggregated_tech_data(all_tech_data, filename="tech_stack_data.csv")  # <-- ten używa Streamlit
+
 
     # 🔝 i 🔻 tech stacki
     top_5 = [tech for tech, _ in tech_counter.most_common(5)]

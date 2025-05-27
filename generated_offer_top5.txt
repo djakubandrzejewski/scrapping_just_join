@@ -1,0 +1,24 @@
+**Ogłoszenie o pracę: Data Engineer**
+
+**Opis firmy:**
+Jesteśmy dynamiczną firmą z branży IT, specjalizującą się w rozwoju innowacyjnych rozwiązań technologicznych. Nasz zespół składa się z pasjonatów, którzy nie boją się wyzwań i zawsze dążą do doskonałości. Posiadamy silne fundamenty oraz ambitne cele rozwojowe, dlatego szukamy dołączenia do naszego zespołu doświadczonego Data Engineera.
+
+**Obowiązki:**
+- Projektowanie, implementacja i utrzymanie systemów bazodanowych
+- Optymalizacja procesów ETL
+- Współpraca z zespołem developerskim w zakresie analizy danych i raportowania
+- Zapewnienie wysokiej jakości danych poprzez monitorowanie i zarządzanie bazami danych
+
+**Wymagania:**
+- Doświadczenie w programowaniu w języku Python oraz pracy z bazami danych SQL
+- Znajomość języka angielskiego na poziomie umożliwiającym swobodną komunikację
+- Umiejętność pracy z narzędziami Databricks i Airflow
+- Wykształcenie wyższe związane z informatyką lub pokrewnymi dziedzinami
+
+**Benefity:**
+- Atrakcyjne wynagrodzenie adekwatne do posiadanych umiejętności
+- Możliwość rozwoju zawodowego i uczestnictwa w innowacyjnych projektach
+- Elastyczne godziny pracy oraz możliwość pracy zdalnej
+- Przyjazna atmosfera w zespole oraz liczne wydarzenia integracyjne
+
+Jeśli jesteś ambitnym Data Engineerem, który lubi wyzwania i chce rozwijać się w dynamicznej firmie, to ta praca jest dla Ciebie! Dołącz do nas i wspólnie twórzmy przyszłość technologii. Aplikuj już teraz, czekamy na Twoje CV i list motywacyjny na adres email: [adres_email].
