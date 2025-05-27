@@ -25,8 +25,11 @@ data_source = st.radio("Skąd chcesz pobrać dane?", ["Scrappuj z JustJoin", "Wg
 df = None  # docelowy DataFrame
 
 # --- SCRAPPING Z JUSTJOIN ---
-if data_source == "Scrappuj z JustJoin":
-    if st.button("🔍 Start scrapping"):
+keyword = st.text_input("🔑 Podaj słowo kluczowe (np. 'python', 'react', 'data engineer')", value="data engineer")
+
+if st.button("🔍 Start scrapping"):
+        st.info(f"⏳ Scrapping dla keyword: **{keyword}**")
+        offer_urls = get_offer_links(keyword)
         st.info("⏳ Scrapping in progress...")
         offer_urls = get_offer_links()
         st.success(f"✅ Found {len(offer_urls)} offers!")
