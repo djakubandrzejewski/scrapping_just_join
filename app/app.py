@@ -1,8 +1,6 @@
 import streamlit as st
-import os
 import pandas as pd
 from collections import Counter
-import time
 from io import StringIO
 import altair as alt
 from wordcloud import WordCloud
@@ -10,12 +8,9 @@ import matplotlib.pyplot as plt
 import io
 
 from scrapper import get_offer_links
-from search import extract_tech_stack
 from generator import generate_job_offer
 from pdf_export import save_offer_to_pdf
 from categories import CATEGORIES
-
-from concurrent.futures import ThreadPoolExecutor
 
 st.set_page_config(page_title="AI Job Offer Generator", layout="centered")
 st.title("💼 AI Generator Job Offer (Data Engineer)")
@@ -39,35 +34,31 @@ if data_source == "Scrappuj z JustJoin":
 
     if st.button("🔍 Start scrapping"):
         st.info(f"⏳ Scrapping dla słowa: {keyword}")
-        # Przypuśćmy, że selected_category pochodzi ze `st.selectbox(...)`
-        category_slugs = [] if selected_category == "Wszystkie" else [CATEGORIES[selected_category]]
 
-        offer_urls = get_offer_links(keyword=keyword, categories=category_slugs)
+        category_slug = None if selected_category == "Wszystkie" else CATEGORIES[selected_category]
+        category_slug = category_slug or "all"
+        keyword = keyword.strip() if keyword else ""
 
+        offer_data = get_offer_links(keyword=keyword, category=category_slug)
 
-        st.success(f"✅ Znaleziono {len(offer_urls)} ofert!")
+        st.success(f"✅ Znaleziono {len(offer_data)} ofert!")
 
-        def scrape_single(url):
-            try:
-                techs = extract_tech_stack(url)
-                return [(tech, level, url) for tech, level in techs]
-            except Exception:
-                return []
+        def extract_from_cached(offer):
+            return [(tech, offer["url"]) for tech in offer["tech_stack"]]
 
         results = []
         progress = st.progress(0)
         status = st.empty()
 
-        with ThreadPoolExecutor(max_workers=10) as executor:
-            for i, res in enumerate(executor.map(scrape_single, offer_urls)):
-                results.extend(res)
-                status.write(f"🔗 [{i+1}/{len(offer_urls)}] {offer_urls[i]}")
-                progress.progress((i + 1) / len(offer_urls))
+        for i, offer in enumerate(offer_data):
+            results.extend(extract_from_cached(offer))
+            status.write(f"🔗 [{i+1}/{len(offer_data)}] {offer['url']}")
+            progress.progress((i + 1) / len(offer_data))
 
         if not results:
             st.warning("❌ Nie udało się zebrać danych.")
         else:
-            tech_counter = Counter([tech for tech, _, _ in results])
+            tech_counter = Counter([tech for tech, _ in results])
             df = pd.DataFrame(tech_counter.items(), columns=["Technology", "Count"]).sort_values(by="Count", ascending=False)
             st.session_state.df = df
 
