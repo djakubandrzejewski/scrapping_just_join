@@ -1,0 +1,31 @@
+**Ogłoszenie o pracę: Data Engineer**
+
+**Opis firmy:**
+Jesteśmy innowacyjną firmą z branży technologicznej, specjalizującą się w rozwoju zaawansowanych rozwiązań IT. Nasza dynamicznie rozwijająca się firma oferuje inspirujące środowisko pracy, w którym innowacja i kreatywność są mile widziane. Poszukujemy doświadczonego Data Engineera, który dołączy do naszego zespołu i wesprze nas w realizacji ambitnych projektów.
+
+**Obowiązki:**
+- Projektowanie, wdrażanie i zarządzanie infrastrukturą Kubernetes
+- Tworzenie skryptów i narzędzi w języku Python
+- Konfigurowanie i zarządzanie kontenerami Docker
+- Implementacja procesów CI/CD dla automatyzacji dostarczania oprogramowania
+- Współpraca z zespołem programistów i inżynierów do opracowywania nowych rozwiązań
+
+**Wymagania:**
+- Doświadczenie w pracy z technologią Kubernetes
+- Bardzo dobra znajomość języka angielskiego
+- Znajomość języka Python
+- Umiejętność pracy z kontenerami Docker
+- Doświadczenie w implementacji procesów CI/CD
+
+**Benefity:**
+- Konkurencyjne wynagrodzenie
+- Elastyczne godziny pracy
+- Możliwość rozwoju zawodowego i podnoszenia kwalifikacji
+- Pakiet benefitów pozapłacowych
+- Przyjazna atmosfera pracy i dynamiczny zespół
+
+Dołącz do naszego zespołu i rozwijaj się w środowisku, które stawia na innowacje i profesjonalizm! Jeśli jesteś pasjonatem technologii i chcesz pracować nad interesującymi projektami, aplikuj już teraz.
+
+Zapraszamy do przesłania CV i listu motywacyjnego na adres: [adres_email_firmy]
+
+*Zastrzegamy sobie prawo do kontaktu tylko z wybranymi kandydatami. Dziękujemy wszystkim za zainteresowanie naszą ofertą.*

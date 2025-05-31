@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 from urllib.parse import quote
 from typing import List, Dict
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+from requests.exceptions import RequestException
 
 HEADERS = {
     "User-Agent": (
@@ -14,87 +16,80 @@ HEADERS = {
 
 BASE_URL = "https://justjoin.it"
 
-def extract_tech_stack(offer_url: str) -> list[str]:
-    try:
-        response = requests.get(offer_url, headers=HEADERS, timeout=10)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
-        stack_elements = soup.select("div.MuiBox-root h4.MuiTypography-root.MuiTypography-subtitle2")
-        stack = [el.get_text(strip=True) for el in stack_elements if el.get_text(strip=True)]
-
-        if not stack:
-            print(f"[STACK] ⚠️ Brak stacka w {offer_url}")
-        else:
-            print(f"[STACK] ✅ Stack w {offer_url}: {stack}")
-
-        return stack
-    except Exception as e:
-        print(f"[STACK] ❌ Błąd podczas scrapowania {offer_url} → {e}")
-        return []
+def extract_tech_stack(offer_url: str, retries: int = 3, delay: float = 2.0) -> list[str]:
+    for attempt in range(1, retries + 1):
+        try:
+            response = requests.get(offer_url, headers=HEADERS, timeout=10)
+            response.raise_for_status()
+            soup = BeautifulSoup(response.text, "html.parser")
+            stack_elements = soup.select("div.MuiBox-root h4.MuiTypography-root.MuiTypography-subtitle2")
+            stack = [el.get_text(strip=True) for el in stack_elements if el.get_text(strip=True)]
+            print(f"[STACK ✅] {offer_url} → {stack}")
+            return stack
+        except Exception as e:
+            print(f"[STACK RETRY {attempt}/{retries}] {offer_url} → {e}")
+            time.sleep(delay)
+    print(f"[STACK ❌] {offer_url} → NIEUDANE")
+    return []
 
 def get_offer_links(keyword: str = "", category: str = "all") -> List[Dict[str, str]]:
     offers = []
-    seen_links = set()
     offset = 0
-    executor = ThreadPoolExecutor(max_workers=10)
-    fine_scan_mode = False
-    fine_offset = None
-    empty_hits = 0
-    max_empty = 5
+    step = 100
+    max_offset = 2000
+    all_links = []
 
-    while True:
+    def fetch_links(offset_val: int, retries: int = 3, delay: float = 2.0) -> List[str]:
         url = f"{BASE_URL}/job-offers/all-locations"
-        if category and category != "all":
+        if category != "all":
             url += f"/{quote(category)}"
-
-        params = {"keyword": keyword, "from": offset}
+        params = {"keyword": keyword, "from": offset_val} if offset_val else {"keyword": keyword}
         param_str = "&".join(f"{k}={quote(str(v))}" for k, v in params.items())
         full_url = f"{url}?{param_str}"
+        print(f"[DEBUG] Scraping: {full_url} | Offset: {offset_val}")
 
-        print(f"[DEBUG] Scraping: {full_url} | Offset: {offset} | Mode: {'fine' if fine_scan_mode else 'bulk'}")
-        try:
-            res = requests.get(full_url, headers=HEADERS, timeout=10)
-            res.raise_for_status()
-        except Exception as e:
-            print(f"[❌] Błąd pobierania strony: {e}")
+        for attempt in range(1, retries + 1):
+            try:
+                res = requests.get(full_url, headers=HEADERS, timeout=10)
+                res.raise_for_status()
+                soup = BeautifulSoup(res.text, "html.parser")
+                links = [a["href"] for a in soup.find_all("a", href=True) if a["href"].startswith("/job-offer/")]
+                full_links = [BASE_URL + href for href in links]
+                print(f"[INFO]  -> Liczba /job-offer/ linków: {len(full_links)}")
+                return full_links
+            except RequestException as e:
+                print(f"[RETRY {attempt}/{retries}] Offset {offset_val} → {e}")
+                time.sleep(delay)
+
+        print(f"[SKIPPED] Offset {offset_val} pominięty po {retries} nieudanych próbach.")
+        return []
+
+    while offset < max_offset:
+        links = fetch_links(offset)
+        if not links:
             break
+        all_links.extend(links)
+        offset += step
 
-        soup = BeautifulSoup(res.text, "html.parser")
-        links = [a["href"] for a in soup.find_all("a", href=True) if a["href"].startswith("/job-offer/") and "?" not in a["href"]]
-        full_links = [BASE_URL + l for l in links]
-        unique_links = [l for l in full_links if l not in seen_links]
+    seen_ids = set()
+    unique_links = []
+    for link in all_links:
+        job_id = link.split("/")[-1]
+        if job_id not in seen_ids:
+            seen_ids.add(job_id)
+            unique_links.append(link)
 
-        print(f"[DEBUG] Nowych ofert: {len(unique_links)}")
+    print(f"[DEBUG] Unikalnych linków: {len(unique_links)}")
 
-        if not unique_links:
-            empty_hits += 1
-            if fine_scan_mode and empty_hits >= max_empty:
-                print("[STOP] Fine scan zakończony – brak nowych wyników.")
-                break
-        else:
-            empty_hits = 0
-
+    with ThreadPoolExecutor(max_workers=12) as executor:
         futures = {executor.submit(extract_tech_stack, link): link for link in unique_links}
-
         for future in as_completed(futures):
             link = futures[future]
             try:
                 stack = future.result()
                 offers.append({"url": link, "tech_stack": stack})
-                seen_links.add(link)
             except Exception as e:
-                print(f"[STACK] ❌ Błąd stacka w {link}: {e}")
+                print(f"[STACK ❌] {link}: {e}")
 
-        # Tryb bulk: offset += 100, przechodzimy do fine-scan gdy jest mniej niż 100 linków
-        if not fine_scan_mode:
-            if len(unique_links) < 100:
-                fine_scan_mode = True
-                fine_offset = offset + 1
-                offset = fine_offset
-            else:
-                offset += 100
-        else:
-            offset += 1
-
-    executor.shutdown(wait=True)
+    print(f"[✅] Zebrano {len(offers)} ofert z unikalnym job_id")
     return offers
