@@ -6,18 +6,30 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def generate_job_offer(technologies: list, tag: str = "default") -> str:
+
+def generate_job_offer(prompt_input, tag: str = "default") -> str:
     """
-    Tworzy ogłoszenie o pracę dla stanowiska Data Engineer na podstawie technologii.
-    technologies: lista technologii [str]
-    tag: do ewentualnego zapisu pliku
+    Generuje ogłoszenie o pracę na podstawie:
+    - listy technologii (dla kandydatów)
+    - lub swobodnego prompta (dla rekruterów)
+
+    prompt_input: list[str] lub str
+    tag: służy do zapisania do pliku
     """
-    tech_list = ", ".join(technologies)
-    prompt = (
-        f"Stwórz profesjonalne ogłoszenie o pracę na stanowisko Data Engineer. "
-        f"Wymagane technologie to: {tech_list}. "
-        "Ogłoszenie powinno zawierać opis firmy, obowiązki, wymagania, benefity i zakończenie w stylu zachęty do aplikacji."
-    )
+    if isinstance(prompt_input, list):
+        tech_list = ", ".join(prompt_input)
+        prompt = (
+            f"Stwórz profesjonalne ogłoszenie o pracę na stanowisko Data Engineer. "
+            f"Wymagane technologie to: {tech_list}. "
+            "Ogłoszenie powinno zawierać opis firmy, obowiązki, wymagania, benefity "
+            "i zakończenie w stylu zachęty do aplikacji."
+        )
+    elif isinstance(prompt_input, str):
+        prompt = (
+            f"Na podstawie poniższego opisu, stwórz profesjonalne ogłoszenie o pracę:\n\n{prompt_input.strip()}"
+        )
+    else:
+        return "❌ Nieprawidłowy format danych wejściowych."
 
     try:
         response = openai.ChatCompletion.create(
@@ -36,9 +48,9 @@ def generate_job_offer(technologies: list, tag: str = "default") -> str:
         with open(filename, "w", encoding="utf-8") as f:
             f.write(content)
 
-        print(f"saved: {filename}")
+        print(f"[Zapisano]: {filename}")
         return content
 
     except Exception as e:
-        print(f"error: {e}")
-        return "error."
+        print(f"[Błąd generowania]: {e}")
+        return "❌ Błąd podczas generowania ogłoszenia."
