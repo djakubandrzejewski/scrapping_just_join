@@ -1,0 +1,32 @@
+---
+
+**Stanowisko**: Data Engineer
+
+**Opis firmy**: Jest to innowacyjna firma technologiczna specjalizująca się w analizie danych i rozwoju oprogramowania. Nasz zespół składa się z profesjonalistów z branży IT, którzy ciągle dążą do doskonałości i tworzą innowacyjne rozwiązania dla naszych klientów.
+
+**Obowiązki**:
+- Projektowanie, rozwijanie i utrzymywanie infrastruktury danych
+- Tworzenie skryptów w języku Python do automatyzacji procesów
+- Wdrażanie i zarządzanie kontenerami Docker
+- Praca z dużymi zbiorami danych i bazami danych
+
+**Wymagania**:
+- Doświadczenie w pracy jako Data Engineer lub podobnej roli
+- Bardzo dobra znajomość języka Python
+- Znajomość technologii Docker
+- Umiejętność pracy z bazami danych
+- Umiejętność analitycznego myślenia i rozwiązywania problemów
+
+**Benefity**:
+- Elastyczny czas pracy
+- Możliwość pracy zdalnej
+- Pakiet benefitów pozapłacowych
+- Szkolenia i rozwój zawodowy
+
+Jeśli jesteś pasjonatem danych, lubisz pracę z nowoczesnymi technologiami i chcesz rozwijać się w dynamicznym środowisku, dołącz do naszego zespołu jako Data Engineer!
+
+Aplikuj już teraz, wysyłając swoje CV i list motywacyjny na adres: [adres_email_firmy].
+
+--- 
+
+Jak oceniasz to ogłoszenie? Czy spełnia Twoje oczekiwania? Czy mogę w czymś pomóc?
