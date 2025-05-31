@@ -86,5 +86,3 @@ def scrape_offers_with_stack(links: list[str]) -> list[dict]:
 # Execute the full scrape process
 links = fetch_offer_links()
 offers = scrape_offers_with_stack(links)
-import pandas as pd
-import ace_tools as tools; tools.display_dataframe_to_user(name="Scraped PHP Offers", dataframe=pd.DataFrame(offers))

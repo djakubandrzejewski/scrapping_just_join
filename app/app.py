@@ -1,21 +1,25 @@
+# app/app.py
+
 import streamlit as st
 from app.candidate_ui import show_candidate_ui
 from app.recruiter_ui import show_recruiter_ui
+from app.learning_ui import show_learning_ui
 
 def run_app():
     st.set_page_config(page_title="AI Job App", layout="centered")
+    st.title("🎯 AI Job Platform")
 
-    # Zmieniony tytuł i styl
-    st.markdown("<h1 style='text-align: center; font-size: 44px;'>🧠 AI Asystent Kariery</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; font-size: 18px;'>Twoje centrum do eksploracji ofert lub tworzenia rekrutacji z pomocą AI</p>", unsafe_allow_html=True)
-    st.markdown("---")
+    if "page" not in st.session_state:
+        st.session_state.page = "home"
 
-    # Sekcja wyboru roli z lepszym nagłówkiem
-    st.markdown("## 👤 <strong>Kim jesteś?</strong>", unsafe_allow_html=True)
-    user_type = st.radio("", ["👤 Kandydat", "💼 Rekruter"], horizontal=True)
-    st.markdown("---")
+    if st.session_state.page in ["home", "candidate"]:
+        user_type = st.radio("👤 Kim jesteś?", ["Kandydat", "Rekruter"])
 
-    if user_type == "👤 Kandydat":
-        show_candidate_ui()
-    else:
-        show_recruiter_ui()
+        if user_type == "Kandydat":
+            show_candidate_ui()
+        else:
+            show_recruiter_ui()
+
+    elif st.session_state.page == "learning":
+        selected_techs = st.session_state.get("selected_techs", [])
+        show_learning_ui(selected_techs)

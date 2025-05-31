@@ -54,3 +54,23 @@ def generate_job_offer(prompt_input, tag: str = "default") -> str:
     except Exception as e:
         print(f"[Błąd generowania]: {e}")
         return "❌ Błąd podczas generowania ogłoszenia."
+    
+def get_technology_summary(technology: str) -> str:
+    prompt = (
+        f"Napisz krótki opis technologii {technology}. "
+        "Uwzględnij do czego się ją używa, w jakich projektach, oraz poziom trudności nauki."
+    )
+
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Jesteś ekspertem od programowania i doradztwa kariery."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.6,
+            max_tokens=300
+        )
+        return response.choices[0].message["content"]
+    except Exception as e:
+        return f"⚠️ Błąd pobierania opisu dla {technology}: {e}"
