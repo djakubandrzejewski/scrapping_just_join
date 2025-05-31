@@ -74,3 +74,34 @@ def get_technology_summary(technology: str) -> str:
         return response.choices[0].message["content"]
     except Exception as e:
         return f"⚠️ Błąd pobierania opisu dla {technology}: {e}"
+
+def generate_custom_offer(role, company, location, salary, must_have, nice_to_have, benefits, remote_mode):
+    prompt = f"""
+    Stwórz profesjonalne ogłoszenie o pracę na stanowisko **{role}** w firmie **{company}**.
+    
+    Lokalizacja: {location}
+    Tryb pracy: {remote_mode}
+    Widełki wynagrodzenia: {salary}
+
+    Wymagania:
+    - Must-have: {must_have}
+    - Nice-to-have: {nice_to_have}
+
+    Benefity:
+    {benefits}
+
+    Zakończ ogłoszenie zachętą do aplikacji.
+    """
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Jesteś specjalistą HR, który pisze atrakcyjne ogłoszenia IT."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.7,
+            max_tokens=1000
+        )
+        return response.choices[0].message["content"]
+    except Exception as e:
+        return f"Błąd generowania: {e}"
